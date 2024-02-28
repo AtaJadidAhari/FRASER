@@ -122,9 +122,9 @@ filterExpression_jaccard <- function(object, minExpressionInOneSample=20,
     
     # cutoff functions
     f1 <- function(cts, ...){
-        rowMaxs(cts) }
+        rowMaxs(cts, useNames=TRUE) }
     f2 <- function(cts, ctsN, quantile, ...){
-        rowQuantiles(ctsN, probs=quantile, drop=FALSE)[,1] }
+        rowQuantiles(ctsN, probs=quantile, drop=FALSE, useNames=TRUE)[,1] }
     
     funs <- c(maxCount=f1, quantileValueN=f2)
     
@@ -201,8 +201,8 @@ filterVariability_jaccard <- function(object, minDeltaPsi=0, filter=TRUE,
     # cutoff functions
     f1 <- function(cts, ctsN, ...) {
         jaccard <- cts/ctsN
-        rowMaxs(abs(jaccard - rowMeans2(jaccard, na.rm=TRUE)), 
-                na.rm=TRUE) }
+        rowMaxs(abs(jaccard - rowMeans2(jaccard, na.rm=TRUE, useNames=TRUE)), 
+                na.rm=TRUE, useNames=TRUE) }
     
     funs <- c(maxDJaccard=f1)
     
@@ -389,7 +389,7 @@ filterExpression.FRASER <- function(object, minExpressionInOneSample=20,
     
     # cutoff functions
     f1 <- function(cts, ...){
-        rowMaxs(cts) }
+        rowMaxs(cts, useNames=TRUE) }
     f2 <- function(cts, ctsN5, quantile, ...){
         rowQuantiles(ctsN5, probs=quantile, drop=FALSE)[,1] }
     f3 <- function(cts, ctsN3, quantile, ...) {
@@ -455,14 +455,14 @@ filterVariability.FRASER <- function(object, minDeltaPsi=0.05, filter=TRUE,
     # cutoff functions
     f1 <- function(cts, ctsN3, ...) {
         psi <- cts/ctsN3
-        rowMaxs(abs(psi - rowMeans2(psi, na.rm=TRUE)), na.rm=TRUE) }
+        rowMaxs(abs(psi - rowMeans2(psi, na.rm=TRUE, useNames=TRUE)), na.rm=TRUE, useNames=TRUE) }
     f2 <- function(cts, ctsN5, ...) {
         psi <- cts/ctsN5
-        rowMaxs(abs(psi - rowMeans2(psi, na.rm=TRUE)), na.rm=TRUE) }
+        rowMaxs(abs(psi - rowMeans2(psi, na.rm=TRUE, useNames=TRUE)), na.rm=TRUE, useNames=TRUE) }
     f3 <- function(ctsSE, ctsNSE, ...) {
         theta <- ctsSE/ctsNSE
-        dTheta <- rowMaxs(abs(theta - rowMeans2(theta, na.rm=TRUE)), 
-                            na.rm=TRUE) }
+        dTheta <- rowMaxs(abs(theta - rowMeans2(theta, na.rm=TRUE, useNames=TRUE)), 
+                            na.rm=TRUE, useNames=TRUE) }
     
     
     funs <- c(maxDPsi3=f1, maxDPsi5=f2, maxDTheta=f3)

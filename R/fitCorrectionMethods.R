@@ -292,7 +292,7 @@ fitPCA <- function(fds, q, psiType, rhoRange=c(1e-5, 1-1e-5), noiseAlpha=NULL,
         b(fds) <- lmFit$coefficients[1,]
     } else{
         D(fds) <- pc
-        b(fds) <- colMeans2(x)
+        b(fds) <- colMeans2(x, useNames=TRUE)
     }
 
     # use delayed matrix representation of counts again for large datasets

@@ -132,7 +132,7 @@ x <- function(fds, type=currentType(fds), all=FALSE,
         x <- x[,featureExclusionMask(fds, type=type)]
     }
     if(isTRUE(center)){
-        x <- t(t(x) - colMeans2(x))
+        x <- t(t(x) - colMeans2(x, useNames=TRUE))
     }
 
     return(x)

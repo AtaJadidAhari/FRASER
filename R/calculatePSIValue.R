@@ -287,7 +287,7 @@ calculateDeltaPsiValue <- function(fds, psiType, assayName){
     psiVal <- assays(fds)[[psiType]]
     
     # psi - median(psi)
-    rowmedian <- rowMedians(psiVal, na.rm = TRUE)
+    rowmedian <- rowMedians(psiVal, na.rm = TRUE, useNames=TRUE)
     deltaPsi  <- psiVal - rowmedian
     
     # rewrite it as a new hdf5 array
